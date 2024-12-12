@@ -2,7 +2,7 @@ import { useState, useContext, ChangeEvent, SyntheticEvent } from 'react'
 import TextField from '@mui/material/TextField'
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import Dialog from '@mui/material/Dialog'
@@ -121,7 +121,9 @@ export const UserInfo = ({ userId }: UserInfoProps) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleInfoDialogClose}>Close</Button>
+          <Button variant={'default'} onClick={handleInfoDialogClose}>
+            Close
+          </Button>
         </DialogActions>
       </Dialog>
     </>

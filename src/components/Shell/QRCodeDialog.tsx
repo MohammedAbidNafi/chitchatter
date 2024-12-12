@@ -1,4 +1,4 @@
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
@@ -49,7 +49,7 @@ export function QRCodeDialog({ isOpen, handleClose }: QRCodeDialogProps) {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} autoFocus>
+        <Button variant={'destructive'} onClick={handleClose} autoFocus>
           Dismiss
         </Button>
       </DialogActions>

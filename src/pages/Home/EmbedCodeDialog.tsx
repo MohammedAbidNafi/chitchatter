@@ -1,5 +1,6 @@
 import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter'
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
+
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Dialog from '@mui/material/Dialog'
@@ -129,7 +130,9 @@ export const EmbedCodeDialog = ({
         </CopyableBlock>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleEmbedCodeWindowClose}>Close</Button>
+        <Button onClick={handleEmbedCodeWindowClose} variant={'destructive'}>
+          Close
+        </Button>
       </DialogActions>
     </Dialog>
   )

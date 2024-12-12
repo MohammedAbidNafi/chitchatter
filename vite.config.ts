@@ -76,6 +76,7 @@ const config = () => {
           )
         ),
         ...srcPathAliases,
+        '@': path.resolve(__dirname, './src'),
       },
     },
     test: {

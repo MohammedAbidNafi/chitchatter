@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ... */
+
 a {
   color: inherit;
   text-decoration: inherit;
@@ -17,4 +23,10 @@ figure,
 p,
 pre {
   margin: 0;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
 }

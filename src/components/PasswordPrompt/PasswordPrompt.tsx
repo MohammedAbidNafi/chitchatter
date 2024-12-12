@@ -1,6 +1,6 @@
 import { ChangeEvent, useState, SyntheticEvent, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import TextField from '@mui/material/TextField'
@@ -98,11 +98,15 @@ export const PasswordPrompt = ({
         </DialogContent>
         <DialogActions>
           {!isEmbedded && (
-            <Button color="secondary" onClick={handleGoBackClick}>
+            <Button variant={'secondary'} onClick={handleGoBackClick}>
               Go back
             </Button>
           )}
-          <Button type="submit" disabled={password.length === 0}>
+          <Button
+            type="submit"
+            variant={'default'}
+            disabled={password.length === 0}
+          >
             Submit
           </Button>
         </DialogActions>

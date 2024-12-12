@@ -1,5 +1,5 @@
 import Alert, { AlertColor } from '@mui/material/Alert'
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
 import Checkbox from '@mui/material/Checkbox'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
@@ -105,7 +105,9 @@ export function RoomShareDialog(props: RoomShareDialogProps) {
         {isAdvanced && (
           <DialogTitle id="alert-dialog-title">
             Copy URL with password
-            <Button onClick={() => setIsAdvanced(false)}>Simple</Button>
+            <Button variant={'default'} onClick={() => setIsAdvanced(false)}>
+              Simple
+            </Button>
             <IconButton
               aria-label="close"
               onClick={handleClose}
@@ -167,6 +169,7 @@ export function RoomShareDialog(props: RoomShareDialogProps) {
             <Tooltip title="Copy room URL with password. No password entry required to access room.">
               <span>
                 <Button
+                  variant={'default'}
                   type="submit"
                   onClick={copyWithPass}
                   color="error"
@@ -179,12 +182,21 @@ export function RoomShareDialog(props: RoomShareDialogProps) {
               </span>
             </Tooltip>
           ) : (
-            <Button onClick={() => setIsAdvanced(true)} color="error">
+            <Button
+              variant={'default'}
+              onClick={() => setIsAdvanced(true)}
+              color="error"
+            >
               Advanced
             </Button>
           )}
           <Tooltip title="Copy room URL. Password required to access room.">
-            <Button onClick={copyWithoutPass} color="success" autoFocus>
+            <Button
+              variant={'default'}
+              onClick={copyWithoutPass}
+              color="success"
+              autoFocus
+            >
               Copy URL
             </Button>
           </Tooltip>

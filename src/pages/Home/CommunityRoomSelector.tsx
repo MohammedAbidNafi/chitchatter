@@ -1,6 +1,7 @@
 import { useState, SyntheticEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
+
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
@@ -54,7 +55,7 @@ export const CommunityRoomSelector = () => {
             sx={{ flexGrow: 1 }}
           />
           <Button
-            variant="contained"
+            variant="default"
             disabled={selectedRoom === null}
             onClick={handleJoinClick}
           >

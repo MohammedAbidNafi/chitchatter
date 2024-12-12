@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
@@ -47,10 +47,10 @@ export const ConfirmDialog = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onCancel} autoFocus>
+        <Button onClick={onCancel} variant={'outline'} autoFocus>
           Cancel
         </Button>
-        <Button onClick={onConfirm} color="error">
+        <Button onClick={onConfirm} variant={'destructive'} color="error">
           Confirm
         </Button>
       </DialogActions>

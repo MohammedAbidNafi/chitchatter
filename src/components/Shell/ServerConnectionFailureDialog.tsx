@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import useTheme from '@mui/material/styles/useTheme'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
@@ -58,7 +58,9 @@ export const ServerConnectionFailureDialog = () => {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleDialogClose}>Close</Button>
+        <Button variant={'destructive'} onClick={handleDialogClose}>
+          Close
+        </Button>
       </DialogActions>
     </Dialog>
   )

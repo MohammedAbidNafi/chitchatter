@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
@@ -45,7 +45,7 @@ export const UpgradeDialog = ({ appNeedsUpdate }: UpgradeDialogProps) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleRestartClick} autoFocus>
+        <Button variant={'default'} onClick={handleRestartClick} autoFocus>
           Refresh
         </Button>
       </DialogActions>

@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
+
 import Box from '@mui/material/Box'
 import FormControl from '@mui/material/FormControl'
 import Typography from '@mui/material/Typography'
@@ -127,37 +128,28 @@ export function Home({ userId }: HomeProps) {
             }}
           >
             <Button
-              variant="contained"
+              className="mt-2 ml-2"
               onClick={handleJoinPublicRoomClick}
-              sx={{
-                marginTop: 2,
-              }}
+              variant={'default'}
               disabled={!isRoomNameValid}
             >
               Join public room
             </Button>
             <Button
-              variant="contained"
+              className="mt-2 ml-2"
+              variant={'default'}
               onClick={handleJoinPrivateRoomClick}
-              sx={{
-                marginTop: 2,
-                marginLeft: 2,
-              }}
               disabled={!isRoomNameValid}
             >
               Join private room
             </Button>
             <Button
-              variant="contained"
-              color="secondary"
+              className="mt-2 ml-2"
+              variant="secondary"
               onClick={handleGetEmbedCodeClick}
-              sx={{
-                marginTop: 2,
-                marginLeft: 2,
-              }}
               disabled={!isRoomNameValid}
             >
-              Get embed code
+              Get embeded code
             </Button>
           </Box>
         </Form>

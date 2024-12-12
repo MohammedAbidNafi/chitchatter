@@ -13,6 +13,12 @@ export const useShellTheme = () => {
       // https://mui.com/material-ui/customization/default-theme/
       createTheme({
         palette: {
+          primary: {
+            main: '#b734c0',
+          },
+          secondary: {
+            main: '#b734c0',
+          },
           mode: colorMode,
         },
       }),

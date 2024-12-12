@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import FileReaderInput, { Result } from 'react-file-reader-input'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
+import { Button } from '../../src/components/ui/button'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Switch from '@mui/material/Switch'
@@ -13,6 +13,7 @@ import useTheme from '@mui/material/styles/useTheme'
 import { settings } from 'services/Settings'
 import { notification } from 'services/Notification'
 import { ShellContext } from 'contexts/ShellContext'
+
 import { StorageContext } from 'contexts/StorageContext'
 import { SettingsContext } from 'contexts/SettingsContext'
 import { PeerNameDisplay } from 'components/PeerNameDisplay'
@@ -204,10 +205,8 @@ export const Settings = ({ userId }: SettingsProps) => {
         It contains your unique verification keys.
       </Typography>
       <Button
-        variant="outlined"
-        sx={{
-          mb: 2,
-        }}
+        className="mb-2"
+        variant={'default'}
         onClick={handleExportSettingsClick}
       >
         Export profile data
@@ -239,13 +238,7 @@ export const Settings = ({ userId }: SettingsProps) => {
           },
         }}
       >
-        <Button
-          color="warning"
-          variant="outlined"
-          sx={{
-            mb: 2,
-          }}
-        >
+        <Button className="mb-2" color="warning" variant="default">
           Import profile data
         </Button>
       </FileReaderInput>
@@ -280,11 +273,9 @@ export const Settings = ({ userId }: SettingsProps) => {
         Chitchatter application preferences.
       </Typography>
       <Button
-        variant="outlined"
+        className="mb-2"
+        variant="destructive"
         color="error"
-        sx={{
-          mb: 2,
-        }}
         onClick={handleDeleteSettingsClick}
       >
         Delete all data and restart
