@@ -103,7 +103,7 @@ class ChatEmbed extends HTMLElement {
     window.addEventListener('message', this.handleConfigRequestedMessage)
 
     this.configRequestExpirationTimout = setTimeout(() => {
-      console.error(`[chitchatter-sdk] configuration was not sent successfully`)
+      console.error(`[QuickP2P-sdk] configuration was not sent successfully`)
       this.stopListeningForConfigRequest()
     }, configRequestTimeout)
   }

@@ -36,7 +36,7 @@ export function Home({ userId }: HomeProps) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setTitle('Chitchatter')
+    setTitle('QuickP2P')
   }, [setTitle])
 
   const handleRoomNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {

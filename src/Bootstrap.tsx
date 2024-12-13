@@ -144,7 +144,7 @@ const Bootstrap = ({
             }
           } catch (e) {
             console.error(
-              'Chitchatter configuration from parent frame could not be loaded'
+              'QuickP2P configuration from parent frame could not be loaded'
             )
           }
         }

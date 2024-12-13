@@ -162,7 +162,11 @@ export const Settings = ({ userId }: SettingsProps) => {
                   disabled={!areNotificationsAvailable}
                 />
               }
-              label="Show a notification"
+              label={
+                <span className="text-gray-700 dark:text-gray-300">
+                  Show a notification
+                </span>
+              }
               className="mb-4"
             />
           </FormGroup>
@@ -200,8 +204,8 @@ export const Settings = ({ userId }: SettingsProps) => {
           <CardTitle>Export profile data</CardTitle>
           <CardDescription>
             {' '}
-            Export your Chitchatter profile data so that it can be moved to
-            another browser or device.{' '}
+            Export your QuickP2P profile data so that it can be moved to another
+            browser or device.{' '}
             <strong>
               Be careful not to share the exported data with anyone
             </strong>
@@ -218,7 +222,7 @@ export const Settings = ({ userId }: SettingsProps) => {
         <CardHeader>
           <CardTitle>Import profile data</CardTitle>
           <CardDescription>
-            Import your Chitchatter profile that was previously exported from
+            Import your QuickP2P profile that was previously exported from
             another browser or device.
           </CardDescription>
         </CardHeader>
@@ -253,7 +257,7 @@ export const Settings = ({ userId }: SettingsProps) => {
               </PeerNameDisplay>
             </strong>{' '}
             to a new, randomly-assigned name. It will also reset all of your
-            saved Chitchatter application preferences.
+            saved QuickP2P application preferences.
           </CardDescription>
         </CardHeader>
         <CardFooter>

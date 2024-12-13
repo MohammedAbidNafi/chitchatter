@@ -46,7 +46,7 @@ const Init = ({ getUuid = uuid, ...props }: InitProps) => {
       } catch (e) {
         console.error(e)
         setErrorMessage(
-          'Chitchatter was unable to boot up. Please check the browser console.'
+          'QuickP2P was unable to boot up. Please check the browser console.'
         )
       }
     })()

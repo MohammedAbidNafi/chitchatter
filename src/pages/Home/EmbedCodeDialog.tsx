@@ -52,7 +52,7 @@ export const EmbedCodeDialog = ({
 
   return (
     <Dialog open={showEmbedCode} onClose={handleEmbedCodeWindowClose}>
-      <DialogTitle>Embedding Chitchatter</DialogTitle>
+      <DialogTitle>Embedding QuickP2P</DialogTitle>
       <DialogContent>
         <DialogContentText
           sx={{
@@ -101,7 +101,7 @@ export const EmbedCodeDialog = ({
             href="https://github.com/jeremyckahn/chitchatter#SDK"
             target="_blank"
           >
-            Chitchatter SDK
+            QuickP2P SDK
           </Link>{' '}
           to embed a chat room as a{' '}
           <Link
