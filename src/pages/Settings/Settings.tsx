@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import FileReaderInput, { Result } from 'react-file-reader-input'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
