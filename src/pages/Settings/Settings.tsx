@@ -1,13 +1,10 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import FileReaderInput, { Result } from 'react-file-reader-input'
 import Box from '@mui/material/Box'
-import { Button } from '../../src/components/ui/button'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
-import Switch from '@mui/material/Switch'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
-import Paper from '@mui/material/Paper'
 import useTheme from '@mui/material/styles/useTheme'
 
 import { settings } from 'services/Settings'
@@ -19,7 +16,20 @@ import { SettingsContext } from 'contexts/SettingsContext'
 import { PeerNameDisplay } from 'components/PeerNameDisplay'
 import { ConfirmDialog } from 'components/ConfirmDialog'
 
+import { Switch } from '../../src/components/ui/switch'
+
+import { Button } from '../../src/components/ui/button'
+
 import { isErrorWithMessage } from '../../lib/type-guards'
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '../../src/components/ui/card'
 
 interface SettingsProps {
   userId: string
@@ -58,25 +68,16 @@ export const Settings = ({ userId }: SettingsProps) => {
     setTitle('Settings')
   }, [setTitle])
 
-  const handlePlaySoundOnNewMessageChange = (
-    _event: ChangeEvent,
-    playSoundOnNewMessage: boolean
-  ) => {
-    updateUserSettings({ playSoundOnNewMessage })
+  const handlePlaySoundOnNewMessageChange = (checked: boolean) => {
+    updateUserSettings({ playSoundOnNewMessage: checked })
   }
 
-  const handleShowNotificationOnNewMessageChange = (
-    _event: ChangeEvent,
-    showNotificationOnNewMessage: boolean
-  ) => {
-    updateUserSettings({ showNotificationOnNewMessage })
+  const handleShowNotificationOnNewMessageChange = (checked: boolean) => {
+    updateUserSettings({ showNotificationOnNewMessage: checked })
   }
 
-  const handleShowActiveTypingStatusChange = (
-    _event: ChangeEvent,
-    showActiveTypingStatus: boolean
-  ) => {
-    updateUserSettings({ showActiveTypingStatus })
+  const handleShowActiveTypingStatusChange = (checked: boolean) => {
+    updateUserSettings({ showActiveTypingStatus: checked })
   }
 
   const handleDeleteSettingsClick = () => {
@@ -119,183 +120,158 @@ export const Settings = ({ userId }: SettingsProps) => {
   const areNotificationsAvailable = notification.permission === 'granted'
 
   return (
-    <Box sx={{ p: 2, mx: 'auto', maxWidth: theme.breakpoints.values.md }}>
+    <Box sx={{ p: 4, mx: 'auto', maxWidth: theme.breakpoints.values.md }}>
       <Typography
         variant="h2"
         sx={{
           fontSize: theme.typography.h3.fontSize,
           fontWeight: theme.typography.fontWeightMedium,
-          mb: 2,
+          mb: 4,
         }}
       >
         Chat
       </Typography>
-      <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
-        <Typography>When a message is received in the background:</Typography>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={playSoundOnNewMessage}
-                onChange={handlePlaySoundOnNewMessageChange}
-              />
-            }
-            label="Play a sound"
-          />
-          <FormControlLabel
-            control={
-              <Switch
-                checked={
-                  areNotificationsAvailable && showNotificationOnNewMessage
-                }
-                onChange={handleShowNotificationOnNewMessageChange}
-                disabled={!areNotificationsAvailable}
-              />
-            }
-            label="Show a notification"
-          />
-        </FormGroup>
-      </Paper>
-      <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={showActiveTypingStatus}
-                onChange={handleShowActiveTypingStatusChange}
-              />
-            }
-            label="Show active typing indicators"
-          />
-        </FormGroup>
-        <Typography variant="subtitle2">
-          Disabling this will also hide your active typing status from others.
-        </Typography>
-      </Paper>
-      <Divider sx={{ my: 2 }} />
+      <Card className="mb-4 p-4">
+        <CardContent>
+          <CardHeader className="-ml-10">
+            <CardTitle>Background Message Handling</CardTitle>
+            <CardDescription>
+              When a message is received in the background:
+            </CardDescription>
+          </CardHeader>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  className="mr-3"
+                  checked={playSoundOnNewMessage}
+                  onCheckedChange={handlePlaySoundOnNewMessageChange}
+                />
+              }
+              label="Play a sound"
+              className="mb-4"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  className="mr-3"
+                  checked={
+                    areNotificationsAvailable && showNotificationOnNewMessage
+                  }
+                  onCheckedChange={handleShowNotificationOnNewMessageChange}
+                  disabled={!areNotificationsAvailable}
+                />
+              }
+              label="Show a notification"
+              className="mb-4"
+            />
+          </FormGroup>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  className="mr-3"
+                  checked={showActiveTypingStatus}
+                  onCheckedChange={handleShowActiveTypingStatusChange}
+                />
+              }
+              label="Show active typing indicators"
+              className="mb-4"
+            />
+          </FormGroup>
+          <Typography variant="subtitle2">
+            Disabling this will also hide your active typing status from others.
+          </Typography>
+        </CardContent>
+      </Card>
+      <Divider sx={{ my: 4 }} />
       <Typography
         variant="h2"
         sx={{
           fontSize: theme.typography.h3.fontSize,
           fontWeight: theme.typography.fontWeightMedium,
-          mb: 2,
+          mb: 4,
         }}
       >
         Data
       </Typography>
-      <Typography
-        variant="h2"
-        sx={{
-          fontSize: theme.typography.h5.fontSize,
-          fontWeight: theme.typography.fontWeightMedium,
-          mb: 1.5,
-        }}
-      >
-        Export profile data
-      </Typography>
-      <Typography
-        variant="body1"
-        sx={{
-          mb: 2,
-        }}
-      >
-        Export your Chitchatter profile data so that it can be moved to another
-        browser or device.{' '}
-        <strong>Be careful not to share the exported data with anyone</strong>.
-        It contains your unique verification keys.
-      </Typography>
-      <Button
-        className="mb-2"
-        variant={'default'}
-        onClick={handleExportSettingsClick}
-      >
-        Export profile data
-      </Button>
-      <Typography
-        variant="h2"
-        sx={{
-          fontSize: theme.typography.h5.fontSize,
-          fontWeight: theme.typography.fontWeightMedium,
-          mb: 1.5,
-        }}
-      >
-        Import profile data
-      </Typography>
-      <Typography
-        variant="body1"
-        sx={{
-          mb: 2,
-        }}
-      >
-        Import your Chitchatter profile that was previously exported from
-        another browser or device.
-      </Typography>
-      <FileReaderInput
-        {...{
-          as: 'text',
-          onChange: (_e, results) => {
-            handleImportSettingsClick(results)
-          },
-        }}
-      >
-        <Button className="mb-2" color="warning" variant="default">
-          Import profile data
-        </Button>
-      </FileReaderInput>
-      <Typography
-        variant="h2"
-        sx={{
-          fontSize: theme.typography.h5.fontSize,
-          fontWeight: theme.typography.fontWeightMedium,
-          mb: 1.5,
-        }}
-      >
-        Delete all profile data
-      </Typography>
-      <Typography
-        variant="body1"
-        sx={{
-          mb: 2,
-        }}
-      >
-        <strong>Be careful with this</strong>. This will cause your user name to
-        change from{' '}
-        <strong>
-          <PeerNameDisplay
-            sx={{
-              fontWeight: theme.typography.fontWeightMedium,
+      <Card className="mb-4 p-2">
+        <CardHeader>
+          <CardTitle>Export profile data</CardTitle>
+          <CardDescription>
+            {' '}
+            Export your Chitchatter profile data so that it can be moved to
+            another browser or device.{' '}
+            <strong>
+              Be careful not to share the exported data with anyone
+            </strong>
+            . It contains your unique verification keys.
+          </CardDescription>
+        </CardHeader>
+        <CardFooter>
+          <Button variant={'default'} onClick={handleExportSettingsClick}>
+            Export profile data
+          </Button>
+        </CardFooter>
+      </Card>
+      <Card className="mb-4 p-2">
+        <CardHeader>
+          <CardTitle>Import profile data</CardTitle>
+          <CardDescription>
+            Import your Chitchatter profile that was previously exported from
+            another browser or device.
+          </CardDescription>
+        </CardHeader>
+        <CardFooter>
+          <FileReaderInput
+            {...{
+              as: 'text',
+              onChange: (_e, results) => {
+                handleImportSettingsClick(results)
+              },
             }}
           >
-            {userId}
-          </PeerNameDisplay>
-        </strong>{' '}
-        to a new, randomly-assigned name. It will also reset all of your saved
-        Chitchatter application preferences.
-      </Typography>
-      <Button
-        className="mb-2"
-        variant="destructive"
-        color="error"
-        onClick={handleDeleteSettingsClick}
-      >
-        Delete all data and restart
-      </Button>
+            <Button color="warning" variant="default">
+              Import profile data
+            </Button>
+          </FileReaderInput>
+        </CardFooter>
+      </Card>
+      <Card className="mb-4 p-2">
+        <CardHeader>
+          <CardTitle>Delete all profile data</CardTitle>
+          <CardDescription>
+            <strong>Be careful with this</strong>. This will cause your user
+            name to change from{' '}
+            <strong>
+              <PeerNameDisplay
+                sx={{
+                  fontWeight: theme.typography.fontWeightMedium,
+                }}
+              >
+                {userId}
+              </PeerNameDisplay>
+            </strong>{' '}
+            to a new, randomly-assigned name. It will also reset all of your
+            saved Chitchatter application preferences.
+          </CardDescription>
+        </CardHeader>
+        <CardFooter>
+          <Button
+            className="mb-4"
+            variant="destructive"
+            color="error"
+            onClick={handleDeleteSettingsClick}
+          >
+            Delete all data and restart
+          </Button>
+        </CardFooter>
+      </Card>
       <ConfirmDialog
         isOpen={isDeleteSettingsConfirmDiaglogOpen}
         onCancel={handleDeleteSettingsCancel}
         onConfirm={handleDeleteSettingsConfirm}
       />
-      <Typography
-        variant="subtitle2"
-        sx={{
-          mb: 2,
-        }}
-      >
-        Chitchatter only stores user preferences and never message content of
-        any kind. This preference data is only stored locally on your device and
-        not a server.
-      </Typography>
-      <Divider sx={{ my: 2 }} />
     </Box>
   )
 }

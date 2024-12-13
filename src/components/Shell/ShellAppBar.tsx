@@ -96,6 +96,8 @@ export const ShellAppBar = ({
       <Slide appear={false} in={showAppBar} mountOnEnter unmountOnExit>
         <AppBar
           color="primary"
+          elevation={0}
+          enableColorOnDark
           position="fixed"
           isDrawerOpen={isDrawerOpen}
           isPeerListOpen={isPeerListOpen}
