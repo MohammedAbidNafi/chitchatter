@@ -8,8 +8,6 @@ import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
-import MuiLink from '@mui/material/Link'
-import GitHubIcon from '@mui/icons-material/GitHub'
 import Cached from '@mui/icons-material/Cached'
 import useTheme from '@mui/material/styles/useTheme'
 import styled from '@mui/material/styles/styled'
@@ -22,7 +20,6 @@ import { PeerNameDisplay } from 'components/PeerNameDisplay'
 import { Form, Main } from 'components/Elements'
 import Logo from 'img/logo.svg?react'
 
-import { EmbedCodeDialog } from './EmbedCodeDialog'
 import { CommunityRoomSelector } from './CommunityRoomSelector'
 
 const StyledLogo = styled(Logo)({})
@@ -35,7 +32,7 @@ export function Home({ userId }: HomeProps) {
   const { setTitle } = useContext(ShellContext)
   const theme = useTheme()
   const [roomName, setRoomName] = useState(uuid())
-  const [showEmbedCode, setShowEmbedCode] = useState(false)
+  // const [showEmbedCode, setShowEmbedCode] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -59,13 +56,13 @@ export function Home({ userId }: HomeProps) {
     navigate(`/private/${roomName}`)
   }
 
-  const handleGetEmbedCodeClick = () => {
-    setShowEmbedCode(true)
-  }
+  // const handleGetEmbedCodeClick = () => {
+  //   setShowEmbedCode(true)
+  // }
 
-  const handleEmbedCodeWindowClose = () => {
-    setShowEmbedCode(false)
-  }
+  // const handleEmbedCodeWindowClose = () => {
+  //   setShowEmbedCode(false)
+  // }
 
   const isRoomNameValid = roomName.length > 0
 
@@ -143,14 +140,14 @@ export function Home({ userId }: HomeProps) {
             >
               Join private room
             </Button>
-            <Button
+            {/* <Button
               className="mt-2 ml-2"
               variant="secondary"
               onClick={handleGetEmbedCodeClick}
               disabled={!isRoomNameValid}
             >
               Get embeded code
-            </Button>
+            </Button> */}
           </Box>
         </Form>
       </Main>
@@ -159,68 +156,6 @@ export function Home({ userId }: HomeProps) {
         <CommunityRoomSelector />
       </Box>
       <Divider sx={{ my: 2 }} />
-      <Box
-        sx={{
-          maxWidth: theme.breakpoints.values.sm,
-          mx: 'auto',
-          textAlign: 'center',
-          px: 2,
-        }}
-      >
-        <Typography variant="body1">
-          This is a free communication tool that is designed for simplicity,
-          privacy, and security. All interaction between you and your online
-          peers is encrypted. There is no record of your conversation once you
-          all leave.
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          mx: 'auto',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <MuiLink
-          href="https://github.com/jeremyckahn/chitchatter"
-          target="_blank"
-          sx={theme => ({
-            color: theme.palette.text.primary,
-          })}
-        >
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="Open menu"
-          >
-            <GitHubIcon sx={{ fontSize: '2em' }} />
-          </IconButton>
-        </MuiLink>
-      </Box>
-      <Typography variant="body1" sx={{ textAlign: 'center', mb: 1 }}>
-        Licensed under{' '}
-        <MuiLink
-          href="https://github.com/jeremyckahn/chitchatter/blob/develop/LICENSE"
-          target="_blank"
-        >
-          GPL v2
-        </MuiLink>
-        . Please{' '}
-        <MuiLink
-          href="https://github.com/jeremyckahn/chitchatter/blob/develop/README.md"
-          target="_blank"
-        >
-          read the docs
-        </MuiLink>
-        .
-      </Typography>
-      <EmbedCodeDialog
-        showEmbedCode={showEmbedCode}
-        handleEmbedCodeWindowClose={handleEmbedCodeWindowClose}
-        roomName={roomName}
-      />
     </Box>
   )
 }

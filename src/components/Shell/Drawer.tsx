@@ -1,5 +1,4 @@
 import { PropsWithChildren, useContext } from 'react'
-import { Link } from 'react-router-dom'
 import { Theme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import MuiDrawer from '@mui/material/Drawer'
@@ -14,17 +13,14 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import Home from '@mui/icons-material/Home'
-import SettingsApplications from '@mui/icons-material/SettingsRounded'
-import QuestionMark from '@mui/icons-material/QuestionMark'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
-import ReportIcon from '@mui/icons-material/Report'
 import GitInfo from 'react-git-info/macro'
 
 import { routes } from 'config/routes'
 import { SettingsContext } from 'contexts/SettingsContext'
 import { ColorMode } from 'models/settings'
+import IconWithHover from './IconWithHover'
 
 const { commit } = GitInfo()
 
@@ -80,46 +76,43 @@ export const Drawer = ({ isDrawerOpen, onDrawerClose, theme }: DrawerProps) => {
       </Box>
       <Divider />
       <List role="navigation" aria-label="Navigation menu">
-        <Link to={routes.ROOT}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <Home />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-        <Link to={routes.SETTINGS}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <SettingsApplications />
-              </ListItemIcon>
-              <ListItemText primary="Settings" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-        <Link to={routes.ABOUT}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <QuestionMark />
-              </ListItemIcon>
-              <ListItemText primary="About" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-        <Link to={routes.DISCLAIMER}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <ReportIcon />
-              </ListItemIcon>
-              <ListItemText primary="Disclaimer" />
-            </ListItemButton>
-          </ListItem>
-        </Link>
+        <IconWithHover
+          lightStatic="/src/img/lmHomepng.png"
+          darkStatic="/src/img/dmHomepng.png"
+          lightGif="/src/img/lmHomegif.gif"
+          darkGif="/src/img/dmHomegif.gif"
+          alt="Home"
+          link={routes.ROOT}
+          label="Home"
+        />
+        <IconWithHover
+          lightStatic="/src/img/lmSettingpng.png"
+          darkStatic="/src/img/dmSettingpng.png"
+          lightGif="/src/img/lmSettinggif.gif"
+          darkGif="/src/img/dmSettinggif.gif"
+          alt="Settings"
+          link={routes.SETTINGS}
+          label="Settings"
+        />
+        <IconWithHover
+          lightStatic="/src/img/lmAboutpng.png"
+          darkStatic="/src/img/dmAboutpng.png"
+          lightGif="/src/img/lmAboutgif.gif"
+          darkGif="/src/img/dmAboutgif.gif"
+          alt="About"
+          link={routes.ABOUT}
+          label="About"
+        />
+        <IconWithHover
+          lightStatic="/src/img/lmDisclaimerpng.png"
+          darkStatic="/src/img/dmDisclaimerpng.png"
+          lightGif="/src/img/lmDisclaimergif.gif"
+          darkGif="/src/img/dmDisclaimergif.gif"
+          alt="Disclaimer"
+          link={routes.DISCLAIMER}
+          label="Disclaimer"
+        />
+
         <ListItem disablePadding>
           <ListItemButton onClick={handleColorModeToggleClick}>
             <ListItemIcon>
